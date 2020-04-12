@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Create Todo</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- form card start -->
+    <div class="section-wrapper container">
+
+      <!-- form starts here -->
+      <div class="form-layout" [formGroup]='todoCreateForm'>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label">Name: <span class="tx-danger">*</span></label>
+              <input class="form-control" placeholder="Name" formControlName='name' name='name' type="text">
+              <small class="form-text text-muted invalid-data"
+                *ngIf="todoCreateForm.controls['name'].invalid && (todoCreateForm.controls['name'].dirty || todoCreateForm.controls['name'].touched)"
+                class="invalid-data">
+                Please enter valid name
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form-control-label">Expiry Date: <span class="tx-danger">*</span></label>
+              <input class="form-control" ngbDatepicker (click)="datePicker1.toggle()" #datePicker1="ngbDatepicker"
+                     formControlName="expiryDate" placeholder="yyyy-mm-dd">
+              <small class="form-text text-muted invalid-data"
+                     *ngIf="todoCreateForm.controls['expiryDate'].invalid && (todoCreateForm.controls['expiryDate'].dirty || todoCreateForm.controls['expiryDate'].touched)"
+                     class="invalid-data">
+                Please enter valid start date
+              </small>
+            </div>
+          </div>
+          <!-- form end here -->
+        </div>
+        <!-- form card end -->
+      </div>
+      <div class="form-layout-footer">
+        <button class="btn btn-secondary bd-0" routerLink="/view-task">Cancel</button>
+        <button class="btn btn-primary bd-0" (click)='createTodo(todoCreateForm.value)'>Create Todo</button>
+      </div>
+    </div>
+  </div>
+</div>

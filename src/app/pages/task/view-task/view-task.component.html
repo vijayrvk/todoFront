@@ -1,0 +1,69 @@
+
+<app-header></app-header>
+<div class="page-content">
+  <div class="container">
+    <!-- page heading -->
+    <div class="slim-pageheader">
+      <ol class="breadcrumb slim-breadcrumb">
+      </ol>
+      <h6 class="slim-pagetitle">Todo List</h6>
+    </div>
+    <!--page heading end here -->
+
+    <!-- table data for view -->
+
+    <div class="file-item" style="height: unset">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Expiry Date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let todo of todos">
+          <td>
+
+            {{todo.name}}
+          </td>
+          <td>
+            {{todo.expiryDate | date: "mediumDate"}}
+          </td>
+          <td>
+            {{todo.status}}
+          </td>
+
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div><!-- file-item -->
+    <!-- table end-->
+
+    <div class="table-pagination-block" *ngIf="todos.length > 0">
+        <div class="row">            
+          <div class="col-md-12">
+              <div>
+                  <ngb-pagination id="paginate" class="d-flex justify-content-end" [collectionSize]="pagination.total"
+                      [(page)]="pagination.offset" [rotate]="true" [maxSize]="pagination.maxsize" [boundaryLinks]="true"
+                      size="sm" (pageChange)="pageChange(pagination.offset)">
+                  </ngb-pagination>
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="table-pagination-block" *ngIf="todos.length === 0">
+        <div class="row">            
+          <div class="col-md-12">
+              <div>
+                <h3 class="signin-title-secondary text-center">No Task found</h3>
+              </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>
